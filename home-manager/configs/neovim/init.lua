@@ -38,6 +38,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'fatih/vim-go'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'github/copilot.vim'
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
