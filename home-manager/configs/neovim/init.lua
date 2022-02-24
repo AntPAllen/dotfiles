@@ -78,6 +78,10 @@ vim.cmd [[colorscheme onedark]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+-- Set relative line numbers
+
+vim.o.relativenumber = true
+
 --Set statusbar
 require('lualine').setup {
   options = {
