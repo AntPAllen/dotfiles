@@ -39,6 +39,7 @@ require('packer').startup(function(use)
   use 'fatih/vim-go'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'github/copilot.vim'
+  use 'jjo/vim-cue'
   use {"akinsho/toggleterm.nvim"}
   use {
   "folke/which-key.nvim",
