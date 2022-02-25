@@ -41,6 +41,7 @@ require('packer').startup(function(use)
   use 'github/copilot.vim'
   use 'jjo/vim-cue'
   use {"akinsho/toggleterm.nvim"}
+  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
   use {
   "folke/which-key.nvim",
   config = function()
@@ -72,6 +73,8 @@ vim.o.mouse = 'a'
 
 --Enable break indent
 vim.o.breakindent = true
+
+vim.o.autoindent = true
 
 --Save undo history
 vim.opt.undofile = true
@@ -504,3 +507,18 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+-- buffline settings
+
+require("bufferline").setup{
+options = {
+  offsets = {
+    {
+      filetype = "NvimTree",
+      text = "File Explorer",
+      highlight = "Directory",
+      text_align = "left"
+    }
+  }
+}
+}
