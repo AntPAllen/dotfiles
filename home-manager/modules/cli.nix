@@ -65,6 +65,9 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
+    shellAliases = {
+      vim = "nvim";
+    };
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "docker" "npm" "kubectl"];
