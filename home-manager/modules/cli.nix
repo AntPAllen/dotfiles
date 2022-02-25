@@ -52,6 +52,7 @@
     nodePackages.pyright
     sumneko-lua-language-server
     terraform-ls
+    cue
   ];
 
 
