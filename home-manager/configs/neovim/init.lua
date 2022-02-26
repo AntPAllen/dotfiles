@@ -41,6 +41,7 @@ require('packer').startup(function(use)
   use 'github/copilot.vim'
   use 'jjo/vim-cue'
   use {"akinsho/toggleterm.nvim"}
+  use 'kyazdani42/nvim-web-devicons'
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
   use {
   "folke/which-key.nvim",

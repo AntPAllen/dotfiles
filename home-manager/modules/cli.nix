@@ -4,6 +4,7 @@
     gcc
     gnumake
     bat
+    nerdfonts
     bottom
     curl
     fzf
