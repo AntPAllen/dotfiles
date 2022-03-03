@@ -53,6 +53,7 @@
     nodePackages.pyright
     sumneko-lua-language-server
     terraform-ls
+    boundary
     cue
   ];
 
@@ -67,6 +68,10 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
+    sessionVariables = {
+      TERM = "xterm-256color";
+      COLORTERM = "truecolor";
+    };
     shellAliases = {
       vim = "nvim";
     };
