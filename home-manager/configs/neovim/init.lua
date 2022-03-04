@@ -179,7 +179,7 @@ vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gic', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gic', [[<cmd>lua<C-w><C-h> require('telescope.builtin').git_commits()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gib', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gis', [[<cmd>lua require('telescope.builtin').git_status()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gip', [[<cmd>lua require('telescope.builtin').git_bcommits()<cr>]], { noremap = true, silent = true })
@@ -206,6 +206,13 @@ vim.api.nvim_set_keymap('n', '<leader>giw', ':Gwrite<CR><CR>', { noremap = true,
 vim.api.nvim_set_keymap('n', '<leader>gil', ':silent! Glog<CR>:bot copen<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gim', ':Gmove<Space>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gio', ':Git checkout<Space>', { noremap = true, silent = true })
+
+-- Set window navigation key maps to ctrl-h/j/k/l
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
+
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
