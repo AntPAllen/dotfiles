@@ -55,6 +55,7 @@
     terraform-ls
     boundary
     cue
+    sops
   ];
 
 
