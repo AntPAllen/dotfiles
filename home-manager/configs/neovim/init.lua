@@ -78,6 +78,7 @@ vim.o.mouse = 'a'
 vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.autoindent = true
+vim.o.shiftwidth = 2
 
 --Save undo history
 vim.opt.undofile = true
@@ -100,6 +101,11 @@ vim.o.completeopt = 'menuone,noselect'
 -- Set relative line numbers
 
 vim.o.relativenumber = true
+
+-- Add copilot settings
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
 
 --Set statusbar
 require('lualine').setup {
@@ -419,7 +425,12 @@ cmp.setup {
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			else
+			  local copilot_keys = vim.fn["copilot#Accept"]()
+			  if copilot_keys ~= "" then
+				vim.api.nvim_feedkeys(copilot_keys, "i", true)
+			  else
 				fallback()
+			  end
 			end
 		end,
 		['<S-Tab>'] = function(fallback)

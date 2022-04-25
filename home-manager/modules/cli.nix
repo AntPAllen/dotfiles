@@ -4,7 +4,6 @@
     gcc
     gnumake
     bat
-    nerdfonts
     bottom
     curl
     fzf
@@ -37,7 +36,7 @@
     yq
     jq
     gh
-    go_1_17
+    go_1_18
     gotools
     gopls
     go-outline
@@ -53,9 +52,14 @@
     nodePackages.pyright
     sumneko-lua-language-server
     terraform-ls
+    terraform
     boundary
     cue
     sops
+    yarn
+    pulumi-bin
+    kubie
+    terragrunt
   ];
 
 
