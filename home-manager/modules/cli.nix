@@ -60,6 +60,9 @@
     pulumi-bin
     kubie
     terragrunt
+    ripgrep
+    rustup
+    rust-analyzer
   ];
 
 
