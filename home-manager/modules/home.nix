@@ -16,7 +16,7 @@
   home = {
     username = "anthony";
     homeDirectory = "/home/anthony";
-    system = "x86_64-linux";
+    #system = "x86_64-linux";
   };
 
   # Add stuff for your user as you see fit:
