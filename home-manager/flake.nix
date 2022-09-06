@@ -1,41 +1,39 @@
 {
-  description = "Example home-manager from non-nixos system";
+  description = "Home Manager configuration of Anthony Allen";
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-  # inputs.nixpkgs.url = "path:/home/michael/Repositories/nix/nixpkgs";
-  inputs.nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-  inputs.home-manager = {
-    url = "github:nix-community/home-manager";
-    # url = "path:/Users/michael/Repositories/nix/home-manager";
-    inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    # Specify the source of Home Manager and Nixpkgs.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
+      homeConfigurations.linux = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; };
 
-  outputs = { self, ... }@inputs:
-    {
-      homeConfigurations = {
-        linux = inputs.home-manager.lib.homeManagerConfiguration {
-          configuration = { pkgs, ... }:
-            {
-              xdg.configFile."nix/nix.conf".source = ./configs/nix/nix.conf;
-              nixpkgs.config = import ./configs/nix/config.nix;
-              imports = [
-                ./modules/cli.nix
-                ./modules/nvim.nix
-              ];
-              # Let Home Manager install and manage itself.
-              programs.home-manager.enable = true;
-              targets.genericLinux.enable = true;
-              
-            };
-          stateVersion = "22.05";
-          system = "x86_64-linux";
-          homeDirectory = "/home/anthony";
-          username = "anthony";
-          
-        };
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./modules/home.nix
+          ./modules/cli.nix
+          ./modules/nvim.nix
+
+          # {
+          #   home = {
+          #     username = "anthony";
+          #     homeDirectory = "/home/anthony";
+          #     stateVersion = "22.05";
+          #     #system = "x86_64-linux";
+          #   };
+          # }
+        ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
     };
 }
