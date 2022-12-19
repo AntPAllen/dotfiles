@@ -352,7 +352,7 @@ for _, lsp in ipairs(servers) do
 end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
@@ -462,7 +462,6 @@ require'nvim-tree'.setup {
 	hijack_netrw         = true,
 	open_on_setup        = false,
 	ignore_ft_on_setup   = {},
-	auto_close           = false,
 	auto_reload_on_write = true,
 open_on_tab          = false,
 	hijack_cursor        = false,
@@ -501,10 +500,8 @@ warning = "",
 	},
 	view = {
 		width = 30,
-		height = 30,
 		hide_root_folder = false,
 		side = 'left',
-		auto_resize = false,
 		preserve_window_proportions = false,
 		mappings = {
 			custom_only = false,

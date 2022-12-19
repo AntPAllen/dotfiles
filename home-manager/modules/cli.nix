@@ -33,10 +33,10 @@
     kubectl
     azure-cli
     kubernetes-helm
-    yq
+    yq-go
     jq
     gh
-    go_1_18
+    go
     gotools
     gopls
     go-outline
@@ -88,6 +88,11 @@
       plugins = [ "git" "docker" "npm" "kubectl"];
       theme = "robbyrussell";
     };
+    initExtraBeforeCompInit = "
+DISABLE_MAGIC_FUNCTIONS=true
+export PATH=\"\${PATH}:/mnt/c/Users/antall/AppData/Local/Programs/Microsoft VS Code/bin\"
+source ~/aliases
+    ";
   };
 
   programs.starship = {
@@ -95,6 +100,7 @@
     enableZshIntegration = true;
     settings = {
       kubernetes.disabled = false;
+      container.disabled = true;
     };
   };
 
