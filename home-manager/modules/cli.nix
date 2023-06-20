@@ -36,7 +36,6 @@
     yq-go
     jq
     gh
-    go
     gotools
     gopls
     go-outline
@@ -45,24 +44,17 @@
     gocode-gomod
     godef
     golint
-    python310
-    nodejs-16_x
-    nodePackages.yaml-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.pyright
+    graphviz
     sumneko-lua-language-server
     terraform-ls
     terraform
     boundary
-    cue
     sops
     yarn
     pulumi-bin
     kubie
     terragrunt
     ripgrep
-    rustup
-    rust-analyzer
   ];
 
 
@@ -89,8 +81,9 @@
       theme = "robbyrussell";
     };
     initExtraBeforeCompInit = "
+autoload -Uz braceexpand
 DISABLE_MAGIC_FUNCTIONS=true
-export PATH=\"\${PATH}:/mnt/c/Users/antall/AppData/Local/Programs/Microsoft VS Code/bin\"
+export PATH=\"\${PATH}:/mnt/c/Users/antall/AppData/Local/Programs/Microsoft VS Code/bin:/usr/local/go/bin:$HOME/go/bin\"
 source ~/aliases
     ";
   };
