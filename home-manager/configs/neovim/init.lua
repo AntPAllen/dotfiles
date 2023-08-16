@@ -42,7 +42,6 @@ require('packer').startup(function(use)
 	use 'jjo/vim-cue'
 	use {"akinsho/toggleterm.nvim"}
 use 'kyazdani42/nvim-web-devicons'
-	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 	use {
 		"folke/which-key.nvim",
 		config = function()
@@ -52,13 +51,6 @@ use 'kyazdani42/nvim-web-devicons'
 				-- refer to the configuration section below
 			}
 		end
-	}
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icon
-		},
-		config = function() require'nvim-tree'.setup {} end
 	}
 end)
 
@@ -244,9 +236,6 @@ vim.api.nvim_set_keymap('n', '<leader>gil', ':silent! Glog<CR>:bot copen<CR>', {
 vim.api.nvim_set_keymap('n', '<leader>gim', ':Gmove<Space>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gio', ':Git checkout<Space>', { noremap = true, silent = true })
 
--- Set buffer cycling key maps to ctrl-shift-h/l
-vim.api.nvim_set_keymap('n', '<C-S-Left>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-S-Right>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
@@ -369,7 +358,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
@@ -455,87 +444,6 @@ cmp.setup {
 
 -- init.lua
 
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-require'nvim-tree'.setup {
-	disable_netrw        = false,
-	hijack_netrw         = true,
-	open_on_setup        = false,
-	ignore_ft_on_setup   = {},
-	auto_reload_on_write = true,
-open_on_tab          = false,
-	hijack_cursor        = false,
-	update_cwd           = false,
-hijack_unnamed_buffer_when_opening = false,
-	hijack_directories   = {
-	enable = true,
-		auto_open = true,
-	},
-	diagnostics = {
-		enable = false,
-		icons = {
-			hint = "",
-			info = "",
-warning = "",
-			error = "",
-}
-	},
-	update_focused_file = {
-		enable      = false,
-		update_cwd  = false,
-		ignore_list = {}
-	},
-	system_open = {
-		cmd  = nil,
-		args = {}
-	},
-	filters = {
-		dotfiles = false,
-		custom = {}
-	},
-	git = {
-		enable = true,
-		ignore = true,
-		timeout = 500,
-	},
-	view = {
-		width = 30,
-		hide_root_folder = false,
-		side = 'left',
-		preserve_window_proportions = false,
-		mappings = {
-			custom_only = false,
-			list = {}
-		},
-		number = false,
-		relativenumber = false,
-		signcolumn = "yes"
-	},
-	trash = {
-		cmd = "trash",
-		require_confirm = true
-	},
-	actions = {
-		change_dir = {
-			enable = true,
-			global = false,
-		},
-		open_file = {
-			quit_on_open = false,
-			window_picker = {
-				enable = true,
-				chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-				exclude = {
-					filetype = {
-						"notify",
-						"packer",
-						"qf"
-					}
-				}
-			}
-		}
-	}
-}
 
 -- toggleterm settings
 
@@ -554,17 +462,3 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
--- buffline settings
-
-require("bufferline").setup{
-	options = {
-		offsets = {
-		{
-				filetype = "NvimTree",
-				text = "File Explorer",
-				highlight = "Directory",
-				text_align = "left"
-			}
-		}
-	}
-}

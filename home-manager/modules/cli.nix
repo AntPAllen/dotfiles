@@ -31,7 +31,6 @@
     zsh
     argocd
     kubectl
-    azure-cli
     kubernetes-helm
     yq-go
     jq
@@ -55,6 +54,9 @@
     kubie
     terragrunt
     ripgrep
+    kubelogin
+    vault
+    taskwarrior
   ];
 
 
@@ -67,7 +69,9 @@
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
     sessionVariables = {
       TERM = "xterm-256color";
       COLORTERM = "truecolor";
@@ -77,13 +81,13 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "docker" "npm" "kubectl"];
+      plugins = [ "git" "docker" "npm" "kubectl" "taskwarrior"];
       theme = "robbyrussell";
     };
     initExtraBeforeCompInit = "
 autoload -Uz braceexpand
 DISABLE_MAGIC_FUNCTIONS=true
-export PATH=\"\${PATH}:/mnt/c/Users/antall/AppData/Local/Programs/Microsoft VS Code/bin:/usr/local/go/bin:$HOME/go/bin\"
+export PATH=\"\${PATH}:/mnt/c/Users/antall/AppData/Local/Programs/Microsoft VS Code/bin:/usr/local/go/bin:$HOME/go/bin:/nix/var/nix/profiles/default/bin:/home/anthony/.local/bin:/home/anthony/.dotnet\"
 source ~/aliases
     ";
   };
@@ -94,6 +98,13 @@ source ~/aliases
     settings = {
       kubernetes.disabled = false;
       container.disabled = true;
+      custom = {
+        task = {
+          command = "~/fetch_task.sh";
+          when = "command -v task";
+          format = "📋 [$output](bold blue)";
+        };
+      };
     };
   };
 
